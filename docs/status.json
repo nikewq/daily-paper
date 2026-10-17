@@ -1,5 +1,6 @@
 {
-  "last_run": "",
-  "status": "not_run_yet",
-  "message": "Run the workflow once (Actions -> daily-paper -> Run workflow)."
+  "last_run": "2026-10-17",
+  "generated_at": "2026-10-17T04:10:21Z",
+  "status": "no_new_papers",
+  "message": "arXiv has no new papers for these categories today"
 }
