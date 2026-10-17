@@ -1,23 +1,25 @@
 {
-  "title": "Physics-Shaped, Not Physical: Auditing Physics-Guided Underwater Image Restoration",
+  "title": "Look Before You Restore: Learning to Predict Before Acting for Agentic Image Restoration",
   "authors": [
-    "Mochamad Rizal Fauzan",
-    "Irgi Surya"
+    "Xu Zhang",
+    "Jun Wan",
+    "Lefei Zhang",
+    "Liangpei Zhang"
   ],
-  "arxiv_id": "2610.19763",
-  "pdf_url": "https://arxiv.org/pdf/2610.19763",
+  "arxiv_id": "2610.20384",
+  "pdf_url": "https://arxiv.org/pdf/2610.20384",
   "date": "2026-10-17",
   "categories": [
     "arXiv"
   ],
-  "one_line_contribution": "",
-  "problem": "",
-  "method": "",
-  "key_results": "",
-  "why_relevant": "",
-  "limitations": "",
-  "related_anchor": "",
-  "reading_time_min": 37,
+  "one_line_contribution": "提出 PreActIR，在执行前用 tool-conditioned world model 预测每个候选工具对 residual degradation、image quality 和 fidelity 的影响及风险/不确定性，并通过 predict–act–verify 循环做 agentic image restoration。",
+  "problem": "现有混合退化图像恢复 agent 主要采用 execute–observe–replan，工具效果只有执行后才可知，失败调用浪费计算且有害输出难以及时发现；同时难以区分性能瓶颈来自 selector 还是 candidate space。",
+  "method": "PreActIR 为每个候选工具使用 tool-conditioned world model 预测 residual degradation、image quality、fidelity 的变化，以及 harm 风险和预测不确定性；agent 只执行排名最高的候选，独立 verifier 在提交或回滚输出后让 agent 从观察状态重新规划。它还通过 candidate-frontier audit 区分 selector 与 candidate space 的限制，并在 external replay data 上做 targeted tool adaptation 以扩展候选空间。",
+  "key_results": "在固定 candidate pool、verifier、budget 且使用 reference-annotated degradation states 的受控评测中，PreActIR 相比 reactive execute-then-evaluate trial and error 减少 42.5% real tool calls、减少 63.4% rejected calls，并将 Y-PSNR 提升 0.92 dB。",
+  "why_relevant": "直接匹配研究关键词 image restoration（权重 2）与 all-in-one image restoration（权重 1.5）；其执行前预测与 verifier 提交/回滚也靠近 test-time adaptation 的部署时决策，但不主要面向 OOD generalization、invariant learning 或 spurious correlation。",
+  "limitations": "论文摘录未明确列出 limitations；据受控评测推断，结论依赖固定 candidate pool、verifier、budget 与 reference-annotated degradation states，真实开放工具空间和在线部署泛化仍待验证。",
+  "related_anchor": "最接近 learned tool selection / pre-execution estimation（如 DiTTo、Causal-AgentIR）与 agentic image restoration 的 execute–observe–replan 路线，区别在于 PreActIR 训练 tool-conditioned consequence model 做部署时决策，并用独立 verifier 与 candidate-frontier audit 区分 selector 和 candidate-space 限制。",
+  "reading_time_min": 18,
   "score": 9.0,
-  "score_reason": "Directly audits physics-guided underwater image restoration with controlled ablations, matching the image restoration keyword. | summary fields missing: one_line_contribution, problem, method, key_results, why_relevant, limitations, related_anchor, reading_time_min"
+  "score_reason": "The paper directly targets mixed-degradation image restoration with a concrete agentic restoration framework, making it highly relevant to the image restoration interest."
 }
