@@ -1,0 +1,23 @@
+{
+  "title": "Physics-Shaped, Not Physical: Auditing Physics-Guided Underwater Image Restoration",
+  "authors": [
+    "Mochamad Rizal Fauzan",
+    "Irgi Surya"
+  ],
+  "arxiv_id": "2610.19763",
+  "pdf_url": "https://arxiv.org/pdf/2610.19763",
+  "date": "2026-10-17",
+  "categories": [
+    "arXiv"
+  ],
+  "one_line_contribution": "",
+  "problem": "",
+  "method": "",
+  "key_results": "",
+  "why_relevant": "",
+  "limitations": "",
+  "related_anchor": "",
+  "reading_time_min": 37,
+  "score": 9.0,
+  "score_reason": "Directly audits physics-guided underwater image restoration with controlled ablations, matching the image restoration keyword. | summary fields missing: one_line_contribution, problem, method, key_results, why_relevant, limitations, related_anchor, reading_time_min"
+}
