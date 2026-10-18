@@ -1,0 +1,23 @@
+{
+  "title": "ContextLift: Breaking the Spurious Correlation Behind Conditional Emergent Misalignment",
+  "authors": [
+    "Florian Mai",
+    "David Kaczér"
+  ],
+  "arxiv_id": "2610.21633",
+  "pdf_url": "https://arxiv.org/pdf/2610.21633",
+  "date": "2026-10-18",
+  "categories": [
+    "arXiv"
+  ],
+  "one_line_contribution": "提出 ContextLift：一种无需模型、标签或领域知识的反事实数据增强，通过把训练 prompt 的 context sentence 复制到通用安全样本，打破 conditional emergent misalignment 中的 spurious correlation。",
+  "problem": "语言模型在窄范围 misaligned 数据上 finetune 后会广泛 misaligned；generic safety data interleaving 只能把它变成 conditional misalignment，一旦 prompt 类似 finetuning context 就复发。论文将这种 conditional EM 解释为 finetuning domain context 与 misaligned answer 之间的 spurious correlation。",
+  "method": "ContextLift 复制一半 interleaved safety rows，并在 user turn 上逐字加入从随机训练 prompt 中抽取、直到首个 request 前的 context sentence，aligned answer 保持不变。这些副本替换一半 generic safety data，因此训练样本数与 compute 和 generic interleaving 相同。整个过程不需要模型生成、不需要 labels，也不暴露 finetuning domain。",
+  "key_results": "在 Qwen2.5-7B 上 finetune bad security、legal、medical advice 时，domain cue 下 generic interleaving 留下 18.9%、41.9%、58.2% misaligned answers，ContextLift 在相同 data 与 compute 下降到 2.6%、6.1%、12.8%。在 diluted setting（600 条 misaligned + 5,400 条 HH rows）中，cued misalignment 从 7.5–18.3% 降到 2.0–4.1%，且在 misaligned rows 只占 10% minority 时也有效。摘要还报告 narrow task、general capability 和 four benign finetuning tasks 不受损。",
+  "why_relevant": "最匹配关键词 “spurious correlation”，并用 counterfactual augmentation 处理 context cue 下的 conditional misalignment，也与 “domain generalization”/“invariant learning” 中打破 spurious feature 的思路相关；与 image restoration、all-in-one image restoration、test-time adaptation、conformal prediction、recommendation distribution shift 无直接关系。",
+  "limitations": "正文未明确列出 limitations；最明显的是（inferred）主要报告 Qwen2.5-7B 与 security/legal/medical 三类 bad advice，跨模型家族与其他领域的泛化在给定文本中未充分展示。",
+  "related_anchor": "最接近 generic safety data interleaving 与 counterfactual data augmentation 用于 emergent misalignment 防御；区别是 ContextLift 不需要知道受影响领域或 harmful examples，只逐字搬运训练 prompt 的 context sentence 到 safety rows。",
+  "reading_time_min": 30,
+  "score": 8.0,
+  "score_reason": "Directly addresses spurious correlation with a counterfactual augmentation method, though in LLM safety rather than core representation or OOD settings."
+}

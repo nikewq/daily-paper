@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-10-18",
+    "title": "ContextLift: Breaking the Spurious Correlation Behind Conditional Emergent Misalignment",
+    "arxiv_id": "2610.21633",
+    "score": 8.0
+  },
+  {
     "date": "2026-10-17",
     "title": "Look Before You Restore: Learning to Predict Before Acting for Agentic Image Restoration",
     "arxiv_id": "2610.20384",
