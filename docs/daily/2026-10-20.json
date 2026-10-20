@@ -1,0 +1,26 @@
+{
+  "title": "PRISM: Prior Relational Information for Self-supervised Modeling to Enhance Solubility OOD Generalization",
+  "authors": [
+    "Xinyi Chen",
+    "Jiahuan Pang",
+    "Titus Chima",
+    "Paul Weng",
+    "Wendong Wang"
+  ],
+  "arxiv_id": "2610.25605",
+  "pdf_url": "https://arxiv.org/pdf/2610.25605",
+  "date": "2026-10-20",
+  "categories": [
+    "cs.LG"
+  ],
+  "one_line_contribution": "提出 PRISM：将专家定义的化学先验转成 relational teachers，进行 label-free 预训练，以提升溶解度预测的 OOD generalization。",
+  "problem": "溶解度预测需泛化到未见 solute、solvent 与混合溶剂，但监督方法受数据稀缺限制，现有 self-supervised 方法未显式学习化学有意义的关系。",
+  "method": "PRISM 将 SlogP_VSA、SMR_VSA、PEOE_VSA 与 Morgan fingerprints 四类化学先验定义为 relational teachers，用 KL divergence 匹配距离邻域分布来预训练 prior-specific encoders。下游采用 late fusion 融合 prior-specific embeddings；mixed-solvent OOD 下冻结四个 encoders 并训练 lightweight fusion-and-composition head。",
+  "key_results": "文中未报告具体 metric 数值型结果（如 BigSolDB→Leeds/SolProp 的数值未给出），只在 scaffold、solute、solvent 与 mixed-solvent OOD 设置下称匹配或超过 supervised/self-supervised baselines。可复制的结构数字包括：四个 prior-specific encoders、四类 complementary priors、两个 stages（pretraining 与 downstream late fusion）。mixed-solvent OOD 下，冻结四个 PRISM encoders 并训练 lightweight fusion-and-composition head 可降低 run-to-run variation。",
+  "why_relevant": "直接匹配 research keywords 中的 out-of-distribution generalization / ood generalization（溶解度 OOD）与 domain generalization（scaffold、solute、solvent、mixed-solvent shift）。其 label-free relational pretraining 与 invariant learning / spurious correlation 的“用结构先验约束表征”思路相关，但不是 image restoration、all-in-one image restoration、test-time adaptation、conformal prediction 或 recommendation distribution shift。",
+  "limitations": "文中未明确列出 limitations；显见限制（inferred）是仅在溶解度任务与特定化学先验上验证，对无可用 expert-defined relational priors 的领域迁移性未证明。",
+  "related_anchor": "最接近 molecular self-supervised pretraining / relational metric learning；区别在于 PRISM 用专家化学先验定义 population-level relational teachers，并通过 KL divergence 对齐邻域分布，而非 augmentation、masking、reconstruction 或监督 pair。",
+  "reading_time_min": 25,
+  "score": 9.0,
+  "score_reason": "Directly targets OOD generalization for solubility with a concrete self-supervised pretraining method."
+}

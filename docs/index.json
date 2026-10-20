@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-10-20",
+    "title": "PRISM: Prior Relational Information for Self-supervised Modeling to Enhance Solubility OOD Generalization",
+    "arxiv_id": "2610.25605",
+    "score": 9.0
+  },
+  {
     "date": "2026-10-18",
     "title": "ContextLift: Breaking the Spurious Correlation Behind Conditional Emergent Misalignment",
     "arxiv_id": "2610.21633",
