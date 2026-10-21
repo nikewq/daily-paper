@@ -1,26 +1,32 @@
 {
-  "title": "PRISM: Prior Relational Information for Self-supervised Modeling to Enhance Solubility OOD Generalization",
+  "title": "Cognitively Decoupled Meta-Induction for Out-of-Distribution Generalization",
   "authors": [
-    "Xinyi Chen",
-    "Jiahuan Pang",
-    "Titus Chima",
-    "Paul Weng",
-    "Wendong Wang"
+    "Yuqian Wang",
+    "Yuanzheng Wang",
+    "Chaojun Xiao",
+    "Ke Xu",
+    "Bingxiang He",
+    "Jinghan Tan",
+    "Zijun Chen",
+    "Lu Chen",
+    "Yi-Xin Huo",
+    "Maosong Sun"
   ],
-  "arxiv_id": "2610.25605",
-  "pdf_url": "https://arxiv.org/pdf/2610.25605",
-  "date": "2026-10-20",
+  "arxiv_id": "2610.25749",
+  "pdf_url": "https://arxiv.org/pdf/2610.25749",
+  "date": "2026-10-21",
   "categories": [
-    "cs.LG"
+    "cs.LG",
+    "cs.AI"
   ],
-  "one_line_contribution": "提出 PRISM：将专家定义的化学先验转成 relational teachers，进行 label-free 预训练，以提升溶解度预测的 OOD generalization。",
-  "problem": "溶解度预测需泛化到未见 solute、solvent 与混合溶剂，但监督方法受数据稀缺限制，现有 self-supervised 方法未显式学习化学有意义的关系。",
-  "method": "PRISM 将 SlogP_VSA、SMR_VSA、PEOE_VSA 与 Morgan fingerprints 四类化学先验定义为 relational teachers，用 KL divergence 匹配距离邻域分布来预训练 prior-specific encoders。下游采用 late fusion 融合 prior-specific embeddings；mixed-solvent OOD 下冻结四个 encoders 并训练 lightweight fusion-and-composition head。",
-  "key_results": "文中未报告具体 metric 数值型结果（如 BigSolDB→Leeds/SolProp 的数值未给出），只在 scaffold、solute、solvent 与 mixed-solvent OOD 设置下称匹配或超过 supervised/self-supervised baselines。可复制的结构数字包括：四个 prior-specific encoders、四类 complementary priors、两个 stages（pretraining 与 downstream late fusion）。mixed-solvent OOD 下，冻结四个 PRISM encoders 并训练 lightweight fusion-and-composition head 可降低 run-to-run variation。",
-  "why_relevant": "直接匹配 research keywords 中的 out-of-distribution generalization / ood generalization（溶解度 OOD）与 domain generalization（scaffold、solute、solvent、mixed-solvent shift）。其 label-free relational pretraining 与 invariant learning / spurious correlation 的“用结构先验约束表征”思路相关，但不是 image restoration、all-in-one image restoration、test-time adaptation、conformal prediction 或 recommendation distribution shift。",
-  "limitations": "文中未明确列出 limitations；显见限制（inferred）是仅在溶解度任务与特定化学先验上验证，对无可用 expert-defined relational priors 的领域迁移性未证明。",
-  "related_anchor": "最接近 molecular self-supervised pretraining / relational metric learning；区别在于 PRISM 用专家化学先验定义 population-level relational teachers，并通过 KL divergence 对齐邻域分布，而非 augmentation、masking、reconstruction 或监督 pair。",
-  "reading_time_min": 25,
+  "one_line_contribution": "提出 CoDI，将 task-level inductive representations（TIR）的归纳与执行解耦，并用 Dual-Loop Meta-Inductive Learning 跨任务优化 inducer，以提升 LLM 的 OOD 泛化。",
+  "problem": "ICL 依赖 query 与 demonstrations 的邻居式匹配，在分布偏移和未见任务函数下 OOD 性能受限；现有推理或提示优化方法缺少可复用的跨任务归纳能力。",
+  "method": "CoDI 包含 Cognitive-Decoupling Framework：query-blind inducer 仅从 demonstrations 归纳 TIR，executor 基于 TIR 作答。用 Dual-Loop Meta-Inductive Learning 通过 meta-RL 跨任务优化 inducer：inner loop 应用候选 TIR，outer loop 依据执行反馈和两类 reward 精炼归纳，无需 ground-truth TIR 标签。",
+  "key_results": "在五个 ID/OOD benchmarks（含 BBH、BIG-Bench、MATH-500、StrategyQA、ReClor）上评估，CoDI（Qwen3-4B）在 ID 与 OOD 上优于 ICL；原文未给出具体 metric 数值，只报告增益方向。另称更小的 trained inducer 在 OOD 上超过更大的 untrained inducer，且推理时不做 induction 仍保留 OOD 增益。",
+  "why_relevant": "直接匹配 out-of-distribution generalization / OOD generalization（权重二）这一关键词；其“可复用任务规则”思路也与 invariant learning（权重一点五）的跨分布稳定规律诉求相近，但论文并非图像 restoration 或 conformal prediction。",
+  "limitations": "原文未明确列出局限性（inferred）：方法依赖 demonstrations 和 RL 训练，且摘要与节选未给出具体 metric 数值与计算成本。",
+  "related_anchor": "最接近 in-context learning 加 meta-learning / prompt optimization 的任务级规则归纳路线；CoDI 的区别是先做 query-blind TIR induction 再执行，并用 Dual-Loop Meta-Inductive Learning 跨任务优化 inducer，而非在推理时对每个 query 或 task 重新生成或优化提示。",
+  "reading_time_min": 20,
   "score": 9.0,
-  "score_reason": "Directly targets OOD generalization for solubility with a concrete self-supervised pretraining method."
+  "score_reason": "Directly targets out-of-distribution generalization with a concrete meta-induction method evaluated on OOD benchmarks."
 }

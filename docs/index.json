@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-10-21",
+    "title": "Cognitively Decoupled Meta-Induction for Out-of-Distribution Generalization",
+    "arxiv_id": "2610.25749",
+    "score": 9.0
+  },
+  {
     "date": "2026-10-20",
     "title": "PRISM: Prior Relational Information for Self-supervised Modeling to Enhance Solubility OOD Generalization",
     "arxiv_id": "2610.25605",

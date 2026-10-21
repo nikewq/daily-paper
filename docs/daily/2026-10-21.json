@@ -1,0 +1,32 @@
+{
+  "title": "Cognitively Decoupled Meta-Induction for Out-of-Distribution Generalization",
+  "authors": [
+    "Yuqian Wang",
+    "Yuanzheng Wang",
+    "Chaojun Xiao",
+    "Ke Xu",
+    "Bingxiang He",
+    "Jinghan Tan",
+    "Zijun Chen",
+    "Lu Chen",
+    "Yi-Xin Huo",
+    "Maosong Sun"
+  ],
+  "arxiv_id": "2610.25749",
+  "pdf_url": "https://arxiv.org/pdf/2610.25749",
+  "date": "2026-10-21",
+  "categories": [
+    "cs.LG",
+    "cs.AI"
+  ],
+  "one_line_contribution": "提出 CoDI，将 task-level inductive representations（TIR）的归纳与执行解耦，并用 Dual-Loop Meta-Inductive Learning 跨任务优化 inducer，以提升 LLM 的 OOD 泛化。",
+  "problem": "ICL 依赖 query 与 demonstrations 的邻居式匹配，在分布偏移和未见任务函数下 OOD 性能受限；现有推理或提示优化方法缺少可复用的跨任务归纳能力。",
+  "method": "CoDI 包含 Cognitive-Decoupling Framework：query-blind inducer 仅从 demonstrations 归纳 TIR，executor 基于 TIR 作答。用 Dual-Loop Meta-Inductive Learning 通过 meta-RL 跨任务优化 inducer：inner loop 应用候选 TIR，outer loop 依据执行反馈和两类 reward 精炼归纳，无需 ground-truth TIR 标签。",
+  "key_results": "在五个 ID/OOD benchmarks（含 BBH、BIG-Bench、MATH-500、StrategyQA、ReClor）上评估，CoDI（Qwen3-4B）在 ID 与 OOD 上优于 ICL；原文未给出具体 metric 数值，只报告增益方向。另称更小的 trained inducer 在 OOD 上超过更大的 untrained inducer，且推理时不做 induction 仍保留 OOD 增益。",
+  "why_relevant": "直接匹配 out-of-distribution generalization / OOD generalization（权重二）这一关键词；其“可复用任务规则”思路也与 invariant learning（权重一点五）的跨分布稳定规律诉求相近，但论文并非图像 restoration 或 conformal prediction。",
+  "limitations": "原文未明确列出局限性（inferred）：方法依赖 demonstrations 和 RL 训练，且摘要与节选未给出具体 metric 数值与计算成本。",
+  "related_anchor": "最接近 in-context learning 加 meta-learning / prompt optimization 的任务级规则归纳路线；CoDI 的区别是先做 query-blind TIR induction 再执行，并用 Dual-Loop Meta-Inductive Learning 跨任务优化 inducer，而非在推理时对每个 query 或 task 重新生成或优化提示。",
+  "reading_time_min": 20,
+  "score": 9.0,
+  "score_reason": "Directly targets out-of-distribution generalization with a concrete meta-induction method evaluated on OOD benchmarks."
+}
