@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-10-22",
+    "title": "WaFIR: Wavelet-Fourier Mixture-of-Experts with Subband-Adaptive Routing for Blind All-in-One Image Restoration",
+    "arxiv_id": "2610.29108",
+    "score": 10.0
+  },
+  {
     "date": "2026-10-21",
     "title": "Cognitively Decoupled Meta-Induction for Out-of-Distribution Generalization",
     "arxiv_id": "2610.25749",

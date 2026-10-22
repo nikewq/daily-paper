@@ -1,0 +1,30 @@
+{
+  "title": "WaFIR: Wavelet-Fourier Mixture-of-Experts with Subband-Adaptive Routing for Blind All-in-One Image Restoration",
+  "authors": [
+    "Trong Nhan Nguyen",
+    "Vu Hoang Minh Doan",
+    "Thanh Dat Le",
+    "Truong Tien Vo",
+    "Thi Thu Ha Vu",
+    "Tan Hung Vo",
+    "Jaeyeop Choi",
+    "Junghwan Oh",
+    "Truong-Son Hy"
+  ],
+  "arxiv_id": "2610.29108",
+  "pdf_url": "https://arxiv.org/pdf/2610.29108",
+  "date": "2026-10-22",
+  "categories": [
+    "cs.CV"
+  ],
+  "one_line_contribution": "提出 WaFIR，把 Haar 子带级 Fourier descriptor 作为 blind all-in-one image restoration 的 sparse expert routing 信号，并在 subband 级用 prompt-conditioned Fourier experts 做 spectral modulation。",
+  "problem": "Blind all-in-one image restoration 需在无 test-time task label 下让共享模型适应异构甚至混合退化；现有 conditioning signals 多总结整张 feature map，缺少 spectral subband 组织信息，导致频谱特性不同的区域可能获得相似 routing。",
+  "method": "WaFIR 作为 decoder module 加在 PromptIR-style U-Net 每个 decoder level：用 Haar DWT 把 feature 分解为 LL/LH/HL/HH 四个 subbands，并为每个 subband 提取 six-dimensional Fourier descriptor。Routing 由 descriptor 与 pooled prompt embedding 联合条件化，经 sparse top- gate 选择 prompt-conditioned Fourier experts，在 global frequency domain 调制 magnitude 与 phase，再通过 cross-subband interaction (CSI) 与 Haar IDWT 重建。训练上使用 zero-initialized residual gate 与 per-subband load-balancing loss 稳定 expert 使用。",
+  "key_results": "在 denoising、deraining、dehazing 三个任务的统一训练/评估协议下，平均 PSNR 相比 PromptIR 提升 0.48 dB、相比 Up-Restorer 提升 0.38 dB；摘录未给出具体数据集名和绝对 PSNR。Matched-capacity 与 routing controls 显示增益不能仅由额外参数解释。在 unseen noise intensities 下 descriptor-based routing 比 discrete label-conditioned alternative 更鲁棒，在 compound degradations 下持平；这些未给数值。",
+  "why_relevant": "最直接匹配 image restoration（2）与 all-in-one image restoration（1.5）；其针对 unseen noise intensities、unseen datasets/industrial domain 且无需 fine-tuning 的泛化分析也对应 out-of-distribution generalization（2）和 ood generalization（2）。",
+  "limitations": "摘录未声明 limitations；推断：验证集中在 denoising/deraining/dehazing 三任务，且 SPMoE/FFT experts 的推理开销、top- gate 超参数敏感性与真实工业域绝对性能未在摘录中量化。",
+  "related_anchor": "最接近 PromptIR 这类 prompt-based all-in-one restoration 工作；区别在于 WaFIR 将 routing 从图像级/全局 prompt 条件推进到 Haar subband 级 Fourier descriptor 与 sparse Fourier experts 的频域专家路由。",
+  "reading_time_min": 25,
+  "score": 10.0,
+  "score_reason": "Directly addresses blind all-in-one image restoration with a concrete subband-routing module and restoration benchmarks."
+}

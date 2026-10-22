@@ -1,32 +1,30 @@
 {
-  "title": "Cognitively Decoupled Meta-Induction for Out-of-Distribution Generalization",
+  "title": "WaFIR: Wavelet-Fourier Mixture-of-Experts with Subband-Adaptive Routing for Blind All-in-One Image Restoration",
   "authors": [
-    "Yuqian Wang",
-    "Yuanzheng Wang",
-    "Chaojun Xiao",
-    "Ke Xu",
-    "Bingxiang He",
-    "Jinghan Tan",
-    "Zijun Chen",
-    "Lu Chen",
-    "Yi-Xin Huo",
-    "Maosong Sun"
+    "Trong Nhan Nguyen",
+    "Vu Hoang Minh Doan",
+    "Thanh Dat Le",
+    "Truong Tien Vo",
+    "Thi Thu Ha Vu",
+    "Tan Hung Vo",
+    "Jaeyeop Choi",
+    "Junghwan Oh",
+    "Truong-Son Hy"
   ],
-  "arxiv_id": "2610.25749",
-  "pdf_url": "https://arxiv.org/pdf/2610.25749",
-  "date": "2026-10-21",
+  "arxiv_id": "2610.29108",
+  "pdf_url": "https://arxiv.org/pdf/2610.29108",
+  "date": "2026-10-22",
   "categories": [
-    "cs.LG",
-    "cs.AI"
+    "cs.CV"
   ],
-  "one_line_contribution": "提出 CoDI，将 task-level inductive representations（TIR）的归纳与执行解耦，并用 Dual-Loop Meta-Inductive Learning 跨任务优化 inducer，以提升 LLM 的 OOD 泛化。",
-  "problem": "ICL 依赖 query 与 demonstrations 的邻居式匹配，在分布偏移和未见任务函数下 OOD 性能受限；现有推理或提示优化方法缺少可复用的跨任务归纳能力。",
-  "method": "CoDI 包含 Cognitive-Decoupling Framework：query-blind inducer 仅从 demonstrations 归纳 TIR，executor 基于 TIR 作答。用 Dual-Loop Meta-Inductive Learning 通过 meta-RL 跨任务优化 inducer：inner loop 应用候选 TIR，outer loop 依据执行反馈和两类 reward 精炼归纳，无需 ground-truth TIR 标签。",
-  "key_results": "在五个 ID/OOD benchmarks（含 BBH、BIG-Bench、MATH-500、StrategyQA、ReClor）上评估，CoDI（Qwen3-4B）在 ID 与 OOD 上优于 ICL；原文未给出具体 metric 数值，只报告增益方向。另称更小的 trained inducer 在 OOD 上超过更大的 untrained inducer，且推理时不做 induction 仍保留 OOD 增益。",
-  "why_relevant": "直接匹配 out-of-distribution generalization / OOD generalization（权重二）这一关键词；其“可复用任务规则”思路也与 invariant learning（权重一点五）的跨分布稳定规律诉求相近，但论文并非图像 restoration 或 conformal prediction。",
-  "limitations": "原文未明确列出局限性（inferred）：方法依赖 demonstrations 和 RL 训练，且摘要与节选未给出具体 metric 数值与计算成本。",
-  "related_anchor": "最接近 in-context learning 加 meta-learning / prompt optimization 的任务级规则归纳路线；CoDI 的区别是先做 query-blind TIR induction 再执行，并用 Dual-Loop Meta-Inductive Learning 跨任务优化 inducer，而非在推理时对每个 query 或 task 重新生成或优化提示。",
-  "reading_time_min": 20,
-  "score": 9.0,
-  "score_reason": "Directly targets out-of-distribution generalization with a concrete meta-induction method evaluated on OOD benchmarks."
+  "one_line_contribution": "提出 WaFIR，把 Haar 子带级 Fourier descriptor 作为 blind all-in-one image restoration 的 sparse expert routing 信号，并在 subband 级用 prompt-conditioned Fourier experts 做 spectral modulation。",
+  "problem": "Blind all-in-one image restoration 需在无 test-time task label 下让共享模型适应异构甚至混合退化；现有 conditioning signals 多总结整张 feature map，缺少 spectral subband 组织信息，导致频谱特性不同的区域可能获得相似 routing。",
+  "method": "WaFIR 作为 decoder module 加在 PromptIR-style U-Net 每个 decoder level：用 Haar DWT 把 feature 分解为 LL/LH/HL/HH 四个 subbands，并为每个 subband 提取 six-dimensional Fourier descriptor。Routing 由 descriptor 与 pooled prompt embedding 联合条件化，经 sparse top- gate 选择 prompt-conditioned Fourier experts，在 global frequency domain 调制 magnitude 与 phase，再通过 cross-subband interaction (CSI) 与 Haar IDWT 重建。训练上使用 zero-initialized residual gate 与 per-subband load-balancing loss 稳定 expert 使用。",
+  "key_results": "在 denoising、deraining、dehazing 三个任务的统一训练/评估协议下，平均 PSNR 相比 PromptIR 提升 0.48 dB、相比 Up-Restorer 提升 0.38 dB；摘录未给出具体数据集名和绝对 PSNR。Matched-capacity 与 routing controls 显示增益不能仅由额外参数解释。在 unseen noise intensities 下 descriptor-based routing 比 discrete label-conditioned alternative 更鲁棒，在 compound degradations 下持平；这些未给数值。",
+  "why_relevant": "最直接匹配 image restoration（2）与 all-in-one image restoration（1.5）；其针对 unseen noise intensities、unseen datasets/industrial domain 且无需 fine-tuning 的泛化分析也对应 out-of-distribution generalization（2）和 ood generalization（2）。",
+  "limitations": "摘录未声明 limitations；推断：验证集中在 denoising/deraining/dehazing 三任务，且 SPMoE/FFT experts 的推理开销、top- gate 超参数敏感性与真实工业域绝对性能未在摘录中量化。",
+  "related_anchor": "最接近 PromptIR 这类 prompt-based all-in-one restoration 工作；区别在于 WaFIR 将 routing 从图像级/全局 prompt 条件推进到 Haar subband 级 Fourier descriptor 与 sparse Fourier experts 的频域专家路由。",
+  "reading_time_min": 25,
+  "score": 10.0,
+  "score_reason": "Directly addresses blind all-in-one image restoration with a concrete subband-routing module and restoration benchmarks."
 }
