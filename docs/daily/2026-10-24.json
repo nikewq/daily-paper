@@ -1,0 +1,25 @@
+{
+  "title": "Implicit Feature Reweighting for Label-Free Graph Generalization",
+  "authors": [
+    "Tianjun Yao",
+    "Chen Xi",
+    "Xinyang Li",
+    "Lixian Zhong"
+  ],
+  "arxiv_id": "2610.29571",
+  "pdf_url": "https://arxiv.org/pdf/2610.29571",
+  "date": "2026-10-24",
+  "categories": [
+    "arXiv"
+  ],
+  "one_line_contribution": "提出 SCARCE：仅用 environment partition、无需 class labels，通过 VGAE 重建保留特征并用 adversarial confusion 收缩 environment-discriminative 方向，实现 label-free graph OOD generalization。",
+  "problem": "Graph-level OOD generalization 很重要，但现有方法通常需要 class labels 和/或 environment labels 来决定哪些子结构可预测，限制了标签稀缺场景的应用。",
+  "method": "SCARCE 分两阶段：先 warm-start 一个 VGAE 做 graph reconstruction，再用 adversarial confusion mechanism 训练 encoder，使 discriminator 无法区分 environments，同时保持 reconstruction fidelity。理论表明 environment confusion 会收缩 representation 中 environment-discriminative directions，等价于对 downstream classifier 施加 anisotropic ridge penalty，从而降低对 spurious correlations 的依赖而不擦除信息。",
+  "key_results": "在 DrugOOD 的 18 个设置中 17 个达到最佳，且无需 environment annotation、clustered pseudo-environments 即可。GOOD-Motif 上 label-free OOD accuracy 达到 state-of-the-art（文本未给具体数值）。合成实验验证了理论识别的两个 preconditions，但未给具体结果数值。",
+  "why_relevant": "直接匹配 out-of-distribution generalization/ood generalization（权重 2）和 domain generalization（权重 1.5）。其 environment confusion 针对 spurious correlation（权重 1.5），并与 invariant learning（权重 1.5）相邻。",
+  "limitations": "论文未明确列出 limitations；推断：仍需训练图的 environment partition（可由 clustering 得到），且主要验证 graph-level OOD，未证明可迁移到 image restoration 或 recommendation distribution shift 等其它任务。",
+  "related_anchor": "最接近 last-layer reweighting / environment-adversarial invariance 方法，但 SCARCE 无需 class labels，并用 VGAE reconstruction + adversarial confusion 做连续特征收缩，而非显式选择/擦除或依赖标签的 invariant subgraph 抽取。",
+  "reading_time_min": 25,
+  "score": 9.0,
+  "score_reason": "Directly addresses graph-level OOD generalization and reduces reliance on spurious correlations with a concrete label-free representation-learning method."
+}

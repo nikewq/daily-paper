@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-10-24",
+    "title": "Implicit Feature Reweighting for Label-Free Graph Generalization",
+    "arxiv_id": "2610.29571",
+    "score": 9.0
+  },
+  {
     "date": "2026-10-22",
     "title": "WaFIR: Wavelet-Fourier Mixture-of-Experts with Subband-Adaptive Routing for Blind All-in-One Image Restoration",
     "arxiv_id": "2610.29108",
