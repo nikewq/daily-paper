@@ -1,25 +1,24 @@
 {
-  "title": "Implicit Feature Reweighting for Label-Free Graph Generalization",
+  "title": "SKG in Practice: OOD Generalization Cases Across FourDomains",
   "authors": [
-    "Tianjun Yao",
-    "Chen Xi",
-    "Xinyang Li",
-    "Lixian Zhong"
+    "Jian An",
+    "Chaoshi Wu",
+    "Xinpan Luo"
   ],
-  "arxiv_id": "2610.29571",
-  "pdf_url": "https://arxiv.org/pdf/2610.29571",
-  "date": "2026-10-24",
+  "arxiv_id": "2610.32314",
+  "pdf_url": "https://arxiv.org/pdf/2610.32314",
+  "date": "2026-10-26",
   "categories": [
-    "arXiv"
+    "cs.LG"
   ],
-  "one_line_contribution": "提出 SCARCE：仅用 environment partition、无需 class labels，通过 VGAE 重建保留特征并用 adversarial confusion 收缩 environment-discriminative 方向，实现 label-free graph OOD generalization。",
-  "problem": "Graph-level OOD generalization 很重要，但现有方法通常需要 class labels 和/或 environment labels 来决定哪些子结构可预测，限制了标签稀缺场景的应用。",
-  "method": "SCARCE 分两阶段：先 warm-start 一个 VGAE 做 graph reconstruction，再用 adversarial confusion mechanism 训练 encoder，使 discriminator 无法区分 environments，同时保持 reconstruction fidelity。理论表明 environment confusion 会收缩 representation 中 environment-discriminative directions，等价于对 downstream classifier 施加 anisotropic ridge penalty，从而降低对 spurious correlations 的依赖而不擦除信息。",
-  "key_results": "在 DrugOOD 的 18 个设置中 17 个达到最佳，且无需 environment annotation、clustered pseudo-environments 即可。GOOD-Motif 上 label-free OOD accuracy 达到 state-of-the-art（文本未给具体数值）。合成实验验证了理论识别的两个 preconditions，但未给具体结果数值。",
-  "why_relevant": "直接匹配 out-of-distribution generalization/ood generalization（权重 2）和 domain generalization（权重 1.5）。其 environment confusion 针对 spurious correlation（权重 1.5），并与 invariant learning（权重 1.5）相邻。",
-  "limitations": "论文未明确列出 limitations；推断：仍需训练图的 environment partition（可由 clustering 得到），且主要验证 graph-level OOD，未证明可迁移到 image restoration 或 recommendation distribution shift 等其它任务。",
-  "related_anchor": "最接近 last-layer reweighting / environment-adversarial invariance 方法，但 SCARCE 无需 class labels，并用 VGAE reconstruction + adversarial confusion 做连续特征收缩，而非显式选择/擦除或依赖标签的 invariant subgraph 抽取。",
-  "reading_time_min": 25,
+  "one_line_contribution": "本文给出 SKG inference framework 的工程实现方法与四个域案例，验证其相对强基线的 OOD 泛化表现并总结完整训练流程。",
+  "problem": "如何把 SKG 的理论转化为可操作的工程规范，并在四个域中取得优于强基线的 OOD 结果。",
+  "method": "论文以 Paper A 的理论为基础，按“目标—所用 SKG 理论—参数设置—基线协议—数据结果—优势来源”组织四个案例。方法部分给出 pre-validation、task invariant construction、three-stage training、residual training 等完整流程，并附四项 theorems 与一项 proposition。",
+  "key_results": "Case 1 的 OOD MSE 比最佳神经基线低 1.69 到 4.12 倍，state-dependent metric 在受控条件下有 10^8-order 改进；Case 2 真机 mAP 从 0.2564 升至 0.4964（+24.00 points，single-run，32 images，point estimate），AP75 从 0.1736 升至 0.5765（+40.29 points）。Case 3 的 sine to square OOD MSE 为 0.0296，对比 Transformer 0.0641（5 seeds 均值，p=0.024）。Case 4 的 MD17 ID@100 ADE 为 0.0285 对比 ESTAG 0.1467，OOD@100 为 0.0316 对比 0.1411（single seed）。",
+  "why_relevant": "直接匹配研究关键词 out-of-distribution generalization/ood generalization（weight 2），并涉及 task invariant construction 与跨域 OOD 案例，可关联 invariant learning（weight 1.5）和 domain generalization（weight 1.5）。",
+  "limitations": "论文自述 single-run 实验方差、single-seed 结果局限、parameterization mismatch 导致负向更新，以及工程阈值仅作诊断信号而非硬约束。",
+  "related_anchor": "最接近 invariant learning / OOD generalization 的工程化方法线；区别在于本文是 SKG 的实践指南，延续 Paper A 的理论并给出四域案例，而非提出新理论或综述。",
+  "reading_time_min": 90,
   "score": 9.0,
-  "score_reason": "Directly addresses graph-level OOD generalization and reduces reliance on spurious correlations with a concrete label-free representation-learning method."
+  "score_reason": "Directly targets OOD generalization with concrete case studies across four domains."
 }
