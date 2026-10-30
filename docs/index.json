@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-10-30",
+    "title": "Rural Readiness: Domain Generalization with Adversarially Chosen Domains",
+    "arxiv_id": "2610.40468",
+    "score": 9.0
+  },
+  {
     "date": "2026-10-26",
     "title": "SKG in Practice: OOD Generalization Cases Across FourDomains",
     "arxiv_id": "2610.32314",

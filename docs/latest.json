@@ -1,24 +1,25 @@
 {
-  "title": "SKG in Practice: OOD Generalization Cases Across FourDomains",
+  "title": "Rural Readiness: Domain Generalization with Adversarially Chosen Domains",
   "authors": [
-    "Jian An",
-    "Chaoshi Wu",
-    "Xinpan Luo"
+    "Cynthia Dwork",
+    "Andisheh Ghasemi",
+    "Lunjia Hu"
   ],
-  "arxiv_id": "2610.32314",
-  "pdf_url": "https://arxiv.org/pdf/2610.32314",
-  "date": "2026-10-26",
+  "arxiv_id": "2610.40468",
+  "pdf_url": "https://arxiv.org/pdf/2610.40468",
+  "date": "2026-10-30",
   "categories": [
-    "cs.LG"
+    "cs.LG",
+    "stat.ML"
   ],
-  "one_line_contribution": "本文给出 SKG inference framework 的工程实现方法与四个域案例，验证其相对强基线的 OOD 泛化表现并总结完整训练流程。",
-  "problem": "如何把 SKG 的理论转化为可操作的工程规范，并在四个域中取得优于强基线的 OOD 结果。",
-  "method": "论文以 Paper A 的理论为基础，按“目标—所用 SKG 理论—参数设置—基线协议—数据结果—优势来源”组织四个案例。方法部分给出 pre-validation、task invariant construction、three-stage training、residual training 等完整流程，并附四项 theorems 与一项 proposition。",
-  "key_results": "Case 1 的 OOD MSE 比最佳神经基线低 1.69 到 4.12 倍，state-dependent metric 在受控条件下有 10^8-order 改进；Case 2 真机 mAP 从 0.2564 升至 0.4964（+24.00 points，single-run，32 images，point estimate），AP75 从 0.1736 升至 0.5765（+40.29 points）。Case 3 的 sine to square OOD MSE 为 0.0296，对比 Transformer 0.0641（5 seeds 均值，p=0.024）。Case 4 的 MD17 ID@100 ADE 为 0.0285 对比 ESTAG 0.1467，OOD@100 为 0.0316 对比 0.1411（single seed）。",
-  "why_relevant": "直接匹配研究关键词 out-of-distribution generalization/ood generalization（weight 2），并涉及 task invariant construction 与跨域 OOD 案例，可关联 invariant learning（weight 1.5）和 domain generalization（weight 1.5）。",
-  "limitations": "论文自述 single-run 实验方差、single-seed 结果局限、parameterization mismatch 导致负向更新，以及工程阈值仅作诊断信号而非硬约束。",
-  "related_anchor": "最接近 invariant learning / OOD generalization 的工程化方法线；区别在于本文是 SKG 的实践指南，延续 Paper A 的理论并给出四域案例，而非提出新理论或综述。",
-  "reading_time_min": 90,
+  "one_line_contribution": "本文提出并刻画 adversarially chosen domains 下的 domain generalization，证明在允许模型与在 99% 而非 100% 源域上表现好的假设竞争时，样本复杂度可从 Ω(dk) 显著降到 O(d)。",
+  "problem": "训练于 data-rich 机构的预测模型在 data-scarce rural populations 上常失效；论文研究源域与目标域均可被对抗选择时，如何仅凭观测源域实现尽可能稳健的 domain generalization。",
+  "method": "形式化 adversarial domain generalization，并定义 strict/relaxed benchmark：学习器需在 unseen target 上至少不差于在源域上满足误差约束的最差 benchmark hypothesis。仅假设 hypothesis class 中存在在 k 个源域上误差至多 ε 的 ε-universal predictor，分析 strict 与 relaxed 目标的 sample complexity 上下界。还研究 target domain 的小规模 labeled sample 对 worst-case sample complexity 的影响。",
+  "key_results": "本文为理论分析，未报告真实 dataset 或 metric 的具体数值；关键结果为：在 VC dimension 为 d、k 个源域下，strict 目标样本复杂度为 Ω(dk)，而 relaxed 目标（允许与在 99% 而非 100% 源域上表现好的假设竞争）可降到 O(d)。在 meta-distributional setting 中，该洞察相对已知 sample complexity upper bounds 带来相应改进；target domain 的小规模 labeled sample 不改善源域上的 worst-case sample complexity。",
+  "why_relevant": "直接匹配研究者的 domain generalization、out-of-distribution generalization/ood generalization 关键词，并以 adversarially chosen domains 形式讨论分布偏移下的最坏情形泛化。",
+  "limitations": "论文未报告真实临床数据集上的实验验证（推断），主要贡献为理论样本复杂度刻画而非实证方法。",
+  "related_anchor": "最接近 Deng et al. (2020) 的 rural readiness/domain generalization 线，但将其扩展为源域与目标域可对抗选择的 adversarial domain generalization，并给出 strict 与 relaxed benchmark 的样本复杂度分析。",
+  "reading_time_min": 30,
   "score": 9.0,
-  "score_reason": "Directly targets OOD generalization with concrete case studies across four domains."
+  "score_reason": "Directly studies domain generalization with adversarially chosen domains and provides a concrete theoretical sample-complexity contribution."
 }
