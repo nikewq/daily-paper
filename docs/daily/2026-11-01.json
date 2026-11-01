@@ -1,0 +1,25 @@
+{
+  "title": "FFAI: Flow Matching with Feedback Training and Adaptive Initialization for CT Reconstruction",
+  "authors": [
+    "Jigang Duan",
+    "Heran Wang",
+    "Genwei Ma",
+    "Xing Zhao"
+  ],
+  "arxiv_id": "2610.39517",
+  "pdf_url": "https://arxiv.org/pdf/2610.39517",
+  "date": "2026-11-01",
+  "categories": [
+    "arXiv"
+  ],
+  "one_line_contribution": "提出统一的 conditional flow matching 框架，结合基于 teacher-student 的 feedback-aware training 与按退化程度选择的 degradation-adaptive initialization，用于低剂量、稀疏视角和有限角度 CT 重建。",
+  "problem": "低剂量、稀疏视角和有限角度 CT 虽退化机制不同，但都因测量信息不足导致重建困难；现有 flow matching 迭代重建中，预测误差可能使推理状态偏离训练路径，固定初始化也不适合退化程度不同的输入。",
+  "method": "以初始重建为 condition，训练时用 teacher network 模拟推理更新生成 shifted states，student network 学习从中恢复高质量参考图像；推理时依据噪声水平或投影缺失程度选择起始时间，并调整初始状态加入的噪声以适配输入。",
+  "key_results": "文中未提供具体数据集、评价指标或数值结果，仅称该方法在三个 CT 重建任务上定量结果优于对比方法，并能抑制噪声和伪影、保留解剖结构与细节。",
+  "why_relevant": "主要匹配 image restoration 与 all-in-one image restoration：将多种 CT 退化纳入统一重建框架；对 out-of-distribution generalization/domain generalization 的关联在于处理不同退化严重程度和采集条件，但不是标准 OOD 基准。",
+  "limitations": "文中未说明局限；推断其局限包括未报告具体数据集、指标和数值，且方法依赖对噪声水平或投影缺失程度的估计来选择初始化。",
+  "related_anchor": "最接近 flow matching 用于 inverse problem 的 FLOWER 以及 CoreDiff/CDDM 这类训练时考虑推理状态偏移的重建方法；区别在于加入 feedback-aware training 与 degradation-adaptive initialization 以统一处理三类 CT 退化。",
+  "reading_time_min": 20,
+  "score": 9.0,
+  "score_reason": "CT reconstruction is framed as image restoration with a concrete unified flow-matching method, directly matching a core keyword."
+}

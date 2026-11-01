@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-11-01",
+    "title": "FFAI: Flow Matching with Feedback Training and Adaptive Initialization for CT Reconstruction",
+    "arxiv_id": "2610.39517",
+    "score": 9.0
+  },
+  {
     "date": "2026-10-30",
     "title": "Rural Readiness: Domain Generalization with Adversarially Chosen Domains",
     "arxiv_id": "2610.40468",
