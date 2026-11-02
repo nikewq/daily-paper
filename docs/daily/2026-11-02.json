@@ -1,0 +1,26 @@
+{
+  "title": "Measuring What Matters: A Causal Reliance Score for Histopathology Image Segmentation",
+  "authors": [
+    "Samuel Thomas",
+    "Daniel Tweneboah Anyimadu",
+    "Ahmed Karam Eldaly",
+    "Somaia Elsheikh",
+    "Mohammed M. Abdelsamea"
+  ],
+  "arxiv_id": "2610.41763",
+  "pdf_url": "https://arxiv.org/pdf/2610.41763",
+  "date": "2026-11-02",
+  "categories": [
+    "cs.CV"
+  ],
+  "one_line_contribution": "提出基于受控干预的 histopathology segmentation 评估框架和 Causal Reliance Score (CRS)，用于量化模型对前景组织扰动与背景/域变化的相对敏感性。",
+  "problem": "现有 histopathology segmentation 模型可能依赖 spurious background correlations，而仅改进架构或标准 Dice/IoU 不能揭示这种依赖；论文关注如何审计模型到底依赖病理相关结构还是虚假相关。",
+  "method": "用受控干预（前景组织扰动 vs 背景/域变化）构建 causality-inspired evaluation framework，并提出 CRS 度量相对敏感性；训练端设计 augmentation strategies 作为 implicit counterfactual interventions 以鼓励对 nuisance factors 的不变性并保留 morphology。以 self-supervised transformer CAUSE-ViT 做 experimental instantiation，比较 supervised、generative 和 contrastive training strategies 的行为差异。",
+  "key_results": "文中没有提供具体数据集、metric、value 或实验数值（只有引用编号如 [7]、[10] 等），因此无法报告 concrete numbers；作者报告 CRS 可揭示 Dice/IoU 未捕捉的模型行为差异。",
+  "why_relevant": "最匹配 causal representation learning、spurious correlation、out-of-distribution generalization/domain generalization 与 invariant learning：它用干预审计模型对 foreground 与 background/domain variation 的 reliance。不直接涉及 image restoration、all-in-one image restoration、test-time adaptation、conformal prediction 或 recommendation distribution shift。",
+  "limitations": "主要属于 evaluation framework/metric 层面的工作，并以 CAUSE-ViT 作为 instantiation，文中未见对多数据集临床验证或具体数值结果的报告（inferred limitation）。",
+  "related_anchor": "最接近 causal/invariant representation learning 与 spurious correlation auditing；区别在于它不是提出新 segmentation architecture，而是用受控干预和 CRS 评估模型对 foreground 与 background/domain variation 的相对 reliance。",
+  "reading_time_min": 6,
+  "score": 8.0,
+  "score_reason": "Directly targets spurious correlations and causal intervention-based evaluation in medical image segmentation."
+}

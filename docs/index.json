@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-11-02",
+    "title": "Measuring What Matters: A Causal Reliance Score for Histopathology Image Segmentation",
+    "arxiv_id": "2610.41763",
+    "score": 8.0
+  },
+  {
     "date": "2026-11-01",
     "title": "FFAI: Flow Matching with Feedback Training and Adaptive Initialization for CT Reconstruction",
     "arxiv_id": "2610.39517",
