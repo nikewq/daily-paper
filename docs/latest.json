@@ -1,26 +1,23 @@
 {
-  "title": "Measuring What Matters: A Causal Reliance Score for Histopathology Image Segmentation",
+  "title": "Weight-Space Programming for Improving Image-Restoration Diffusion Models: Technical Conjectures and a Recursive Improvement Loop",
   "authors": [
-    "Samuel Thomas",
-    "Daniel Tweneboah Anyimadu",
-    "Ahmed Karam Eldaly",
-    "Somaia Elsheikh",
-    "Mohammed M. Abdelsamea"
+    "Zhuoran Zheng",
+    "Doubao"
   ],
-  "arxiv_id": "2610.41763",
-  "pdf_url": "https://arxiv.org/pdf/2610.41763",
-  "date": "2026-11-02",
+  "arxiv_id": "2611.04268",
+  "pdf_url": "https://arxiv.org/pdf/2611.04268",
+  "date": "2026-11-04",
   "categories": [
     "cs.CV"
   ],
-  "one_line_contribution": "提出基于受控干预的 histopathology segmentation 评估框架和 Causal Reliance Score (CRS)，用于量化模型对前景组织扰动与背景/域变化的相对敏感性。",
-  "problem": "现有 histopathology segmentation 模型可能依赖 spurious background correlations，而仅改进架构或标准 Dice/IoU 不能揭示这种依赖；论文关注如何审计模型到底依赖病理相关结构还是虚假相关。",
-  "method": "用受控干预（前景组织扰动 vs 背景/域变化）构建 causality-inspired evaluation framework，并提出 CRS 度量相对敏感性；训练端设计 augmentation strategies 作为 implicit counterfactual interventions 以鼓励对 nuisance factors 的不变性并保留 morphology。以 self-supervised transformer CAUSE-ViT 做 experimental instantiation，比较 supervised、generative 和 contrastive training strategies 的行为差异。",
-  "key_results": "文中没有提供具体数据集、metric、value 或实验数值（只有引用编号如 [7]、[10] 等），因此无法报告 concrete numbers；作者报告 CRS 可揭示 Dice/IoU 未捕捉的模型行为差异。",
-  "why_relevant": "最匹配 causal representation learning、spurious correlation、out-of-distribution generalization/domain generalization 与 invariant learning：它用干预审计模型对 foreground 与 background/domain variation 的 reliance。不直接涉及 image restoration、all-in-one image restoration、test-time adaptation、conformal prediction 或 recommendation distribution shift。",
-  "limitations": "主要属于 evaluation framework/metric 层面的工作，并以 CAUSE-ViT 作为 instantiation，文中未见对多数据集临床验证或具体数值结果的报告（inferred limitation）。",
-  "related_anchor": "最接近 causal/invariant representation learning 与 spurious correlation auditing；区别在于它不是提出新 segmentation architecture，而是用受控干预和 CRS 评估模型对 foreground 与 background/domain variation 的相对 reliance。",
-  "reading_time_min": 6,
-  "score": 8.0,
-  "score_reason": "Directly targets spurious correlations and causal intervention-based evaluation in medical image segmentation."
+  "one_line_contribution": "提出把 Weight-Space Programming (WSP) 从修复 LLM 权重 bug 推进到直接改进 image-restoration diffusion models 的 C1–C3 技术 conjectures 与 diagnose→edit→evaluate→re-diagnose 的 recursive improvement loop。",
+  "problem": "现有 diffusion-based image restoration 模型仍会 over-smooth、hallucinate 细节、color shift，并在训练中未见 degradation 类型上失败；常规修复依赖 paired data 与 fine-tuning，成本高且风险大。论文追问 LLM 能否在无 gradients、无 paired data、无 fine-tuning 下直接编辑权重来提升 restoration quality。",
+  "method": "论文提出三个可检验 conjectures：C1 让 LLM 在 200 forward-pass budget 内定位造成 quality gap 的 layer；C2 编辑少量已识别 weight directions（如 scaling high-frequency filter norms、correcting output-bias channels）以提升 PSNR 与 perceptual quality；C3 用 diagnose→edit→evaluate→re-diagnose 的 recursive loop 让收益跨轮累积。作者还分析所需 AI capability，并给出 PyTorch-style deployment pipeline 与 benchmark outline。",
+  "key_results": "论文没有报告任何 dataset、metric 或实测 value；它是 conjectural manuscript，C1–C3 均未验证。文中仅引用既有 WSP 证据：frontier LLM 修改 Qwen3.5-0.8B 的 0.016% parameters 修复 reasoning-loop bug，但给 M Gemma3 注入新数学能力失败；C1 设定 200 forward-pass budget。",
+  "why_relevant": "匹配 image restoration（权重 2）与 all-in-one image restoration（权重 1.5）：论文直接面向 deblurring、super-resolution、denoising、inpainting 的 diffusion restoration；其关于训练中未见 degradation 的讨论仅间接涉及 out-of-distribution generalization（权重 2），并非主线。",
+  "limitations": "论文明确为 conjectural，缺少实证验证、数据集和 baseline 对比；其自身也指出 permutation symmetry 会浪费编辑预算，且 bottleneck 的 distributed representation 对 sparse modification 抵抗。上述两点是论文已述限制，不是外部推断。",
+  "related_anchor": "最接近 Weight-Space Programming / LLM direct weight editing 与 diffusion-based image restoration 的交叉；区别在于把 WSP 从 concentrated bug 修复推进到 precise-regression restoration UNet 的质量改进与 recursive loop。",
+  "reading_time_min": 25,
+  "score": 9.0,
+  "score_reason": "This paper directly targets image restoration with a proposed weight-space programming approach for diffusion models."
 }
