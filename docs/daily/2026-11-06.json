@@ -1,0 +1,26 @@
+{
+  "title": "OptIMerge: Optimization-Based Merging of Diffusion Models",
+  "authors": [
+    "Viraj Shah",
+    "Ashwini Pokle",
+    "Peyman Milanfar",
+    "Mauricio Delbracio",
+    "Hossein Talebi"
+  ],
+  "arxiv_id": "2611.07543",
+  "pdf_url": "https://arxiv.org/pdf/2611.07543",
+  "date": "2026-11-06",
+  "categories": [
+    "cs.CV"
+  ],
+  "one_line_contribution": "提出 OptIMerge，通过学习架构感知且参数高效的 merger coefficients 来合并 I2I diffusion experts，而不是依赖单一启发式 scalar。",
+  "problem": "naive scalar weight averaging/souping 在合并结构差异大的 I2I diffusion experts 时会产生 destructive parameter interference 和可见 artifacts，尤其在 image restoration 中不同空间先验会冲突。",
+  "method": "OptIMerge 在冻结 experts 的前提下，用 100-500 images 的校准集优化 multi-task diffusion loss 来学习 merger coefficients。对 attention layers 使用带 channel biases 的 structured low-rank feature alignment（biased LoRA），对 convolutional layers 使用 per-kernel merger coefficients 与 low-rank Cayley transform。只优化等价于 <0.4% network footprint 的轻量 merger 参数。",
+  "key_results": "文中未给出数据集名称、评价指标或性能数值；只报告校准集为 100-500 images，且可训练 merger 参数等价于 <0.4% 的 network footprint。作者声称合并后可同时保留多任务能力、媲美 joint training 并显著优于 zero-shot model soups，但未提供数字结果。",
+  "why_relevant": "直接匹配研究关键词 image restoration 与 all-in-one image restoration：它面向 dense I2I restoration experts 的多任务合并；与 OOD/domain generalization/invariant learning 等关键词关系较弱。",
+  "limitations": "文中未明确列出 limitations；最明显的 inferred limitation 是实验依赖小校准集（100-500 images）且主要验证 image restoration，对更广泛 domain shift/OOD generalization 的鲁棒性未说明。",
+  "related_anchor": "最接近 model souping/task arithmetic 一类 model merging 工作，区别在于 OptIMerge 不靠单一全局 scalar，而是用 diffusion loss 学习 architecture-aware、低秩且按 kernel 的 merger coefficients。",
+  "reading_time_min": 10,
+  "score": 9.0,
+  "score_reason": "Directly targets image restoration by merging image-to-image diffusion experts, matching the image restoration keyword with a concrete method."
+}

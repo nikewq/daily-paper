@@ -1,23 +1,26 @@
 {
-  "title": "Weight-Space Programming for Improving Image-Restoration Diffusion Models: Technical Conjectures and a Recursive Improvement Loop",
+  "title": "OptIMerge: Optimization-Based Merging of Diffusion Models",
   "authors": [
-    "Zhuoran Zheng",
-    "Doubao"
+    "Viraj Shah",
+    "Ashwini Pokle",
+    "Peyman Milanfar",
+    "Mauricio Delbracio",
+    "Hossein Talebi"
   ],
-  "arxiv_id": "2611.04268",
-  "pdf_url": "https://arxiv.org/pdf/2611.04268",
-  "date": "2026-11-04",
+  "arxiv_id": "2611.07543",
+  "pdf_url": "https://arxiv.org/pdf/2611.07543",
+  "date": "2026-11-06",
   "categories": [
     "cs.CV"
   ],
-  "one_line_contribution": "提出把 Weight-Space Programming (WSP) 从修复 LLM 权重 bug 推进到直接改进 image-restoration diffusion models 的 C1–C3 技术 conjectures 与 diagnose→edit→evaluate→re-diagnose 的 recursive improvement loop。",
-  "problem": "现有 diffusion-based image restoration 模型仍会 over-smooth、hallucinate 细节、color shift，并在训练中未见 degradation 类型上失败；常规修复依赖 paired data 与 fine-tuning，成本高且风险大。论文追问 LLM 能否在无 gradients、无 paired data、无 fine-tuning 下直接编辑权重来提升 restoration quality。",
-  "method": "论文提出三个可检验 conjectures：C1 让 LLM 在 200 forward-pass budget 内定位造成 quality gap 的 layer；C2 编辑少量已识别 weight directions（如 scaling high-frequency filter norms、correcting output-bias channels）以提升 PSNR 与 perceptual quality；C3 用 diagnose→edit→evaluate→re-diagnose 的 recursive loop 让收益跨轮累积。作者还分析所需 AI capability，并给出 PyTorch-style deployment pipeline 与 benchmark outline。",
-  "key_results": "论文没有报告任何 dataset、metric 或实测 value；它是 conjectural manuscript，C1–C3 均未验证。文中仅引用既有 WSP 证据：frontier LLM 修改 Qwen3.5-0.8B 的 0.016% parameters 修复 reasoning-loop bug，但给 M Gemma3 注入新数学能力失败；C1 设定 200 forward-pass budget。",
-  "why_relevant": "匹配 image restoration（权重 2）与 all-in-one image restoration（权重 1.5）：论文直接面向 deblurring、super-resolution、denoising、inpainting 的 diffusion restoration；其关于训练中未见 degradation 的讨论仅间接涉及 out-of-distribution generalization（权重 2），并非主线。",
-  "limitations": "论文明确为 conjectural，缺少实证验证、数据集和 baseline 对比；其自身也指出 permutation symmetry 会浪费编辑预算，且 bottleneck 的 distributed representation 对 sparse modification 抵抗。上述两点是论文已述限制，不是外部推断。",
-  "related_anchor": "最接近 Weight-Space Programming / LLM direct weight editing 与 diffusion-based image restoration 的交叉；区别在于把 WSP 从 concentrated bug 修复推进到 precise-regression restoration UNet 的质量改进与 recursive loop。",
-  "reading_time_min": 25,
+  "one_line_contribution": "提出 OptIMerge，通过学习架构感知且参数高效的 merger coefficients 来合并 I2I diffusion experts，而不是依赖单一启发式 scalar。",
+  "problem": "naive scalar weight averaging/souping 在合并结构差异大的 I2I diffusion experts 时会产生 destructive parameter interference 和可见 artifacts，尤其在 image restoration 中不同空间先验会冲突。",
+  "method": "OptIMerge 在冻结 experts 的前提下，用 100-500 images 的校准集优化 multi-task diffusion loss 来学习 merger coefficients。对 attention layers 使用带 channel biases 的 structured low-rank feature alignment（biased LoRA），对 convolutional layers 使用 per-kernel merger coefficients 与 low-rank Cayley transform。只优化等价于 <0.4% network footprint 的轻量 merger 参数。",
+  "key_results": "文中未给出数据集名称、评价指标或性能数值；只报告校准集为 100-500 images，且可训练 merger 参数等价于 <0.4% 的 network footprint。作者声称合并后可同时保留多任务能力、媲美 joint training 并显著优于 zero-shot model soups，但未提供数字结果。",
+  "why_relevant": "直接匹配研究关键词 image restoration 与 all-in-one image restoration：它面向 dense I2I restoration experts 的多任务合并；与 OOD/domain generalization/invariant learning 等关键词关系较弱。",
+  "limitations": "文中未明确列出 limitations；最明显的 inferred limitation 是实验依赖小校准集（100-500 images）且主要验证 image restoration，对更广泛 domain shift/OOD generalization 的鲁棒性未说明。",
+  "related_anchor": "最接近 model souping/task arithmetic 一类 model merging 工作，区别在于 OptIMerge 不靠单一全局 scalar，而是用 diffusion loss 学习 architecture-aware、低秩且按 kernel 的 merger coefficients。",
+  "reading_time_min": 10,
   "score": 9.0,
-  "score_reason": "This paper directly targets image restoration with a proposed weight-space programming approach for diffusion models."
+  "score_reason": "Directly targets image restoration by merging image-to-image diffusion experts, matching the image restoration keyword with a concrete method."
 }

@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-11-06",
+    "title": "OptIMerge: Optimization-Based Merging of Diffusion Models",
+    "arxiv_id": "2611.07543",
+    "score": 9.0
+  },
+  {
     "date": "2026-11-04",
     "title": "Weight-Space Programming for Improving Image-Restoration Diffusion Models: Technical Conjectures and a Recursive Improvement Loop",
     "arxiv_id": "2611.04268",
