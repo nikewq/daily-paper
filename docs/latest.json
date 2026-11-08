@@ -1,26 +1,24 @@
 {
-  "title": "OptIMerge: Optimization-Based Merging of Diffusion Models",
+  "title": "Conformal Prediction for Time-Dependent PDEs",
   "authors": [
-    "Viraj Shah",
-    "Ashwini Pokle",
-    "Peyman Milanfar",
-    "Mauricio Delbracio",
-    "Hossein Talebi"
+    "Joshua Stiller",
+    "Annika Schneider",
+    "Eyke Hüllermeier"
   ],
-  "arxiv_id": "2611.07543",
-  "pdf_url": "https://arxiv.org/pdf/2611.07543",
-  "date": "2026-11-06",
+  "arxiv_id": "2611.08409",
+  "pdf_url": "https://arxiv.org/pdf/2611.08409",
+  "date": "2026-11-08",
   "categories": [
-    "cs.CV"
+    "arXiv"
   ],
-  "one_line_contribution": "提出 OptIMerge，通过学习架构感知且参数高效的 merger coefficients 来合并 I2I diffusion experts，而不是依赖单一启发式 scalar。",
-  "problem": "naive scalar weight averaging/souping 在合并结构差异大的 I2I diffusion experts 时会产生 destructive parameter interference 和可见 artifacts，尤其在 image restoration 中不同空间先验会冲突。",
-  "method": "OptIMerge 在冻结 experts 的前提下，用 100-500 images 的校准集优化 multi-task diffusion loss 来学习 merger coefficients。对 attention layers 使用带 channel biases 的 structured low-rank feature alignment（biased LoRA），对 convolutional layers 使用 per-kernel merger coefficients 与 low-rank Cayley transform。只优化等价于 <0.4% network footprint 的轻量 merger 参数。",
-  "key_results": "文中未给出数据集名称、评价指标或性能数值；只报告校准集为 100-500 images，且可训练 merger 参数等价于 <0.4% 的 network footprint。作者声称合并后可同时保留多任务能力、媲美 joint training 并显著优于 zero-shot model soups，但未提供数字结果。",
-  "why_relevant": "直接匹配研究关键词 image restoration 与 all-in-one image restoration：它面向 dense I2I restoration experts 的多任务合并；与 OOD/domain generalization/invariant learning 等关键词关系较弱。",
-  "limitations": "文中未明确列出 limitations；最明显的 inferred limitation 是实验依赖小校准集（100-500 images）且主要验证 image restoration，对更广泛 domain shift/OOD generalization 的鲁棒性未说明。",
-  "related_anchor": "最接近 model souping/task arithmetic 一类 model merging 工作，区别在于 OptIMerge 不靠单一全局 scalar，而是用 diffusion loss 学习 architecture-aware、低秩且按 kernel 的 merger coefficients。",
-  "reading_time_min": 10,
-  "score": 9.0,
-  "score_reason": "Directly targets image restoration by merging image-to-image diffusion experts, matching the image restoration keyword with a concrete method."
+  "one_line_contribution": "本文证明 time-dependent PDEs 的 function-space 分布可在任意接近时刻互奇异，从而使精确 coverage 不可实现，并在 discretized 设定下刻画 TV distance 饱和并给出 weighted conformal prediction 的有限样本覆盖条件。",
+  "problem": "Time-dependent PDE surrogate models 需要 uncertainty quantification，但 conformal prediction 的 exchangeability 假设在非平稳时间演化下失效，导致系统性 undercoverage。现有 time-series CP 方法多依赖 mixing 或仅给 asymptotic 与 average-over-time 保证，无法保证每个未来时间步的 coverage。",
+  "method": "作者在 function-space 分析 TV distance，证明 heat equation 等设定下任意两个不同时刻分布互奇异；进而分析 discretized PDEs 的 TV distance 随 grid resolution 指数饱和。对于满足特定假设的 discretized 设定，使用 principled weighted conformal prediction 构造 closed-form likelihood ratios，获得每个未来时间步的 finite-sample coverage，并将离散保证提升到连续真解。",
+  "key_results": "理论上证明 function-space 中任意两个不同时刻的 TV distance 最大，discretized 下 TV distance 随 grid granularity 指数接近。正文未给出具体 dataset-metric-value 数值，只提到在 synthetic PDEs 和 three real-world datasets 上做实证验证。",
+  "why_relevant": "最直接匹配 conformal prediction；其围绕非交换性与分布漂移的 coverage 问题也关联 out-of-distribution generalization、domain generalization 和 test-time adaptation，但不涉及 image restoration、all-in-one image restoration 或 recommendation distribution shift。",
+  "limitations": "论文指出 function-space 中精确 coverage 不可能，且 discretized 设定常需限制 spatial discretization 或依赖可得到 closed-form likelihood ratios 的额外假设。上述限制来自论文本身，而非推断。",
+  "related_anchor": "最接近 conformal prediction for time series 与 PDE surrogate models；区别在于它不只依赖 exchangeable trajectories、mixing 或 asymptotic coverage，而是刻画 function-space 不可能性并给出 discretized WCP 的逐时间步 finite-sample 保证。",
+  "reading_time_min": 75,
+  "score": 8.0,
+  "score_reason": "Directly develops conformal prediction theory and weighted methods for time-dependent PDE surrogates, matching a stated keyword with a concrete contribution."
 }

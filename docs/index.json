@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-11-08",
+    "title": "Conformal Prediction for Time-Dependent PDEs",
+    "arxiv_id": "2611.08409",
+    "score": 8.0
+  },
+  {
     "date": "2026-11-06",
     "title": "OptIMerge: Optimization-Based Merging of Diffusion Models",
     "arxiv_id": "2611.07543",

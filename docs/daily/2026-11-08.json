@@ -1,0 +1,24 @@
+{
+  "title": "Conformal Prediction for Time-Dependent PDEs",
+  "authors": [
+    "Joshua Stiller",
+    "Annika Schneider",
+    "Eyke Hüllermeier"
+  ],
+  "arxiv_id": "2611.08409",
+  "pdf_url": "https://arxiv.org/pdf/2611.08409",
+  "date": "2026-11-08",
+  "categories": [
+    "arXiv"
+  ],
+  "one_line_contribution": "本文证明 time-dependent PDEs 的 function-space 分布可在任意接近时刻互奇异，从而使精确 coverage 不可实现，并在 discretized 设定下刻画 TV distance 饱和并给出 weighted conformal prediction 的有限样本覆盖条件。",
+  "problem": "Time-dependent PDE surrogate models 需要 uncertainty quantification，但 conformal prediction 的 exchangeability 假设在非平稳时间演化下失效，导致系统性 undercoverage。现有 time-series CP 方法多依赖 mixing 或仅给 asymptotic 与 average-over-time 保证，无法保证每个未来时间步的 coverage。",
+  "method": "作者在 function-space 分析 TV distance，证明 heat equation 等设定下任意两个不同时刻分布互奇异；进而分析 discretized PDEs 的 TV distance 随 grid resolution 指数饱和。对于满足特定假设的 discretized 设定，使用 principled weighted conformal prediction 构造 closed-form likelihood ratios，获得每个未来时间步的 finite-sample coverage，并将离散保证提升到连续真解。",
+  "key_results": "理论上证明 function-space 中任意两个不同时刻的 TV distance 最大，discretized 下 TV distance 随 grid granularity 指数接近。正文未给出具体 dataset-metric-value 数值，只提到在 synthetic PDEs 和 three real-world datasets 上做实证验证。",
+  "why_relevant": "最直接匹配 conformal prediction；其围绕非交换性与分布漂移的 coverage 问题也关联 out-of-distribution generalization、domain generalization 和 test-time adaptation，但不涉及 image restoration、all-in-one image restoration 或 recommendation distribution shift。",
+  "limitations": "论文指出 function-space 中精确 coverage 不可能，且 discretized 设定常需限制 spatial discretization 或依赖可得到 closed-form likelihood ratios 的额外假设。上述限制来自论文本身，而非推断。",
+  "related_anchor": "最接近 conformal prediction for time series 与 PDE surrogate models；区别在于它不只依赖 exchangeable trajectories、mixing 或 asymptotic coverage，而是刻画 function-space 不可能性并给出 discretized WCP 的逐时间步 finite-sample 保证。",
+  "reading_time_min": 75,
+  "score": 8.0,
+  "score_reason": "Directly develops conformal prediction theory and weighted methods for time-dependent PDE surrogates, matching a stated keyword with a concrete contribution."
+}
