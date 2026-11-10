@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-11-10",
+    "title": "Domain Generalization for Style-Debiased Object Detection via Label-Consistent Training across Multiple Styles",
+    "arxiv_id": "2611.10262",
+    "score": 8.0
+  },
+  {
     "date": "2026-11-08",
     "title": "Conformal Prediction for Time-Dependent PDEs",
     "arxiv_id": "2611.08409",

@@ -1,24 +1,26 @@
 {
-  "title": "Conformal Prediction for Time-Dependent PDEs",
+  "title": "Domain Generalization for Style-Debiased Object Detection via Label-Consistent Training across Multiple Styles",
   "authors": [
-    "Joshua Stiller",
-    "Annika Schneider",
-    "Eyke Hüllermeier"
+    "Chaoran Zhang",
+    "Shirshak Bhusal",
+    "Zhilin Gao",
+    "Qiang Xue",
+    "Haoting Shen"
   ],
-  "arxiv_id": "2611.08409",
-  "pdf_url": "https://arxiv.org/pdf/2611.08409",
-  "date": "2026-11-08",
+  "arxiv_id": "2611.10262",
+  "pdf_url": "https://arxiv.org/pdf/2611.10262",
+  "date": "2026-11-10",
   "categories": [
-    "arXiv"
+    "cs.CV"
   ],
-  "one_line_contribution": "本文证明 time-dependent PDEs 的 function-space 分布可在任意接近时刻互奇异，从而使精确 coverage 不可实现，并在 discretized 设定下刻画 TV distance 饱和并给出 weighted conformal prediction 的有限样本覆盖条件。",
-  "problem": "Time-dependent PDE surrogate models 需要 uncertainty quantification，但 conformal prediction 的 exchangeability 假设在非平稳时间演化下失效，导致系统性 undercoverage。现有 time-series CP 方法多依赖 mixing 或仅给 asymptotic 与 average-over-time 保证，无法保证每个未来时间步的 coverage。",
-  "method": "作者在 function-space 分析 TV distance，证明 heat equation 等设定下任意两个不同时刻分布互奇异；进而分析 discretized PDEs 的 TV distance 随 grid resolution 指数饱和。对于满足特定假设的 discretized 设定，使用 principled weighted conformal prediction 构造 closed-form likelihood ratios，获得每个未来时间步的 finite-sample coverage，并将离散保证提升到连续真解。",
-  "key_results": "理论上证明 function-space 中任意两个不同时刻的 TV distance 最大，discretized 下 TV distance 随 grid granularity 指数接近。正文未给出具体 dataset-metric-value 数值，只提到在 synthetic PDEs 和 three real-world datasets 上做实证验证。",
-  "why_relevant": "最直接匹配 conformal prediction；其围绕非交换性与分布漂移的 coverage 问题也关联 out-of-distribution generalization、domain generalization 和 test-time adaptation，但不涉及 image restoration、all-in-one image restoration 或 recommendation distribution shift。",
-  "limitations": "论文指出 function-space 中精确 coverage 不可能，且 discretized 设定常需限制 spatial discretization 或依赖可得到 closed-form likelihood ratios 的额外假设。上述限制来自论文本身，而非推断。",
-  "related_anchor": "最接近 conformal prediction for time series 与 PDE surrogate models；区别在于它不只依赖 exchangeable trajectories、mixing 或 asymptotic coverage，而是刻画 function-space 不可能性并给出 discretized WCP 的逐时间步 finite-sample 保证。",
-  "reading_time_min": 75,
+  "one_line_contribution": "提出 Origin-Anchored Multi-Style Consistency (OAMSC)，用同场景多风格数据与 scene/object 级一致性约束提升 object detection 的 domain generalization。",
+  "problem": "现有 object detectors 在 unseen target domains 上会因过拟合表层统计线索而显著退化；同时目标域标注昂贵或不可得，使 source-only DG object detection 成为关键问题。",
+  "method": "利用 off-the-shelf diffusion models 将 source datasets 扩展到 20 distinct styles，并人工验证 objects 与 annotations 保持一致。训练时以 Origin 为锚，通过 EMA Origin teacher 在 global FPN 与 GT-guided RoI 上施加 scene/object 级跨风格一致性。该 source-only 框架不改变 detector 架构或 inference，并兼容 one-stage 与 two-stage detectors。",
+  "key_results": "实验覆盖 camera、synthetic-weather、simulation-to-real、corruption shifts，并证明对 one-stage 与 two-stage detectors 有效；但摘录未给出具体 metric 名称和数值。可复制的具体数值包括 20 distinct styles、two style-transfer datasets 和 approximately 180K images。",
+  "why_relevant": "直接匹配 researcher 的 domain generalization、out-of-distribution generalization/ood generalization 与 invariant learning 关键词；其跨风格一致性抑制 style-sensitive shortcut，也对应 spurious correlation。",
+  "limitations": "论文未明确列出 limitations；推断其主要依赖 off-the-shelf diffusion 生成与人工验证，成本较高，且风格覆盖受限于 20 distinct styles。",
+  "related_anchor": "最接近 data augmentation + consistency regularization 的 DG object detection 路线，区别在于利用同场景多风格 label-preserving variants 与 EMA Origin teacher 做 scene/object 级对齐，而非把 stylized samples 当作无关 augmented images。",
+  "reading_time_min": 35,
   "score": 8.0,
-  "score_reason": "Directly develops conformal prediction theory and weighted methods for time-dependent PDE surrogates, matching a stated keyword with a concrete contribution."
+  "score_reason": "Directly addresses domain generalization for object detection with a concrete method targeting style-sensitive shortcut learning and spurious cues."
 }
